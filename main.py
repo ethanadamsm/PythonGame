@@ -7,13 +7,16 @@ black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
-person = pygame.image.load("random.jpg")
+character = pygame.image.load("character.png")
 background = pygame.image.load("background.png")
-personrect = person.get_rect()
+
+playerx = 295
+playery = 190
 
 def render():
 	screen.fill(black)
-	screen.blit(person, (50, 50))
+	screen.blit(background, (0, 0))
+	screen.blit(character, (playerx, playery))
 	pygame.display.flip()
 
 while 1:
