@@ -1,14 +1,14 @@
 import sys, pygame
 
-class Player(object):
+class Enemy(object):
 	def __init__(self, x, y, w, h, vx, vy, image):
-		self.x = x
-		self.y = y
-		self.w = w
-		self.h = h
-		self.vx = vx
-		self.vy = vy
-		self.image = image
+			self.x = x
+			self.y = y
+			self.w = w
+			self.h = h
+			self.vx = vx
+			self.vy = vy
+			self.image = image
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
@@ -37,14 +37,21 @@ class Player(object):
 	def setY(self, y):
 		self.y = y
 
-	def update(self):
+	def update(self, px, py, d, a):
+		if d:
+			self.x -= 1 
+		elif a:
+			self.x += 1
+		else:
+			if px < self.x:
+				self.vx = -.1
+			if px > self.x:
+				self.vx = .1
+			if py < self.y:
+				self.vy = -.1
+			if py > self.y:
+				self.vy = .1
+
 		self.x += self.vx
 		self.y += self.vy
-		if self.x >= 295:
-			self.x = 295
-		if self.x <= 0:
-			self.x = 0
-		if self.y <= 50:
-			self.y = 50
-		if self.y >= 380:
-			self.y = 380
+		
