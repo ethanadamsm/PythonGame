@@ -1,4 +1,4 @@
-import sys, pygame, player, enemy
+import sys, pygame, player, enemy, sword
 pygame.init()
 pygame.display.set_caption('Basic Pygame program')
 
@@ -12,6 +12,7 @@ zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
+player.addItem(sword.Sword(300, 230))
 zombie = enemy.Enemy(400, 190, 50, 100, 0, 0, zombie)
 
 backgroundx = 0
@@ -39,35 +40,43 @@ def update():
 		backgroundx = 0
 
 while 1:
-	global backgroundx
+	#global backgroundx
+	#global player
 	render()
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT: sys.exit()
-		if event.type == pygame.KEYDOWN:
+		if event.type == pygame.KEYDOWN: #keydown
 			if event.key == pygame.K_w:
 				player.setVelY(-1)
+				player.moveItem(0, -1)
 			elif event.key == pygame.K_s:
 				player.setVelY(1)
+				player.moveItem(0, 1)
 			elif event.key == pygame.K_d:
 				if player.getX() < 295:
 					player.setVelX(1)
+					player.moveItem(1, 0)
 				else:
 					bvelx = -1
-					print("w")
 					#zombie.setVelX(zombie.getVelX() - 1) 
 					d = True
 			elif event.key == pygame.K_a:
 				if(backgroundx >= 0):
 					player.setVelX(-1)
+					player.moveItem(-1, 0)
 				else:
 					bvelx = 1
 					if player.getVelX != 0:
 						a = True
-		if event.type == pygame.KEYUP:
+			elif event.key == pygame.K_g:
+				player.addItem()
+		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
+				player.moveItem(0, 0)
 			elif event.key == pygame.K_d or event.key == pygame.K_a:
 				player.setVelX(0)
+				player.moveItem(0, 0)
 				bvelx = 0
 				#zombie.setVelX(zombie.getVelX() + 1)
 				d = False
