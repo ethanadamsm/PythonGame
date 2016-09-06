@@ -1,4 +1,4 @@
-import sys, pygame
+import sys, pygame, inventory
 
 class Player(object):
 	def __init__(self, x, y, w, h, vx, vy, image):
@@ -9,9 +9,11 @@ class Player(object):
 		self.vx = vx
 		self.vy = vy
 		self.image = image
+		self.inven = inventory.Inventory()
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
+		self.inven.render(screen)
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -48,3 +50,10 @@ class Player(object):
 			self.y = 50
 		if self.y >= 380:
 			self.y = 380
+		self.inven.update()
+
+	def addItem(self, item):
+		self.inven.addItem(item)
+
+	def moveItem(self, vx, vy):
+		self.inven.moveItem(vx, vy)
