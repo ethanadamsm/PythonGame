@@ -25,3 +25,15 @@ class Inventory(object):
 
 	def rotateItem(self, angle):
 		self.itemList[0].rotateItem(angle)
+
+	def getX(self):
+		return self.itemList[0].getX()
+
+	def getY(self):
+		return self.itemList[0].getY()
+
+	def getW(self):
+		return self.itemList[0].getW()
+
+	def getH(self):
+		return self.itemList[0].getH()
