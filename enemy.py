@@ -10,10 +10,12 @@ class Enemy(object):
 			self.vy = vy
 			self.image = image
 			self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
+			self.visible = True
 
 	def render(self, screen):
-		screen.blit(self.image, (self.x, self.y))
-		self.healthbar.render(screen)
+		if self.visible:
+			screen.blit(self.image, (self.x, self.y))
+			self.healthbar.render(screen)
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -63,6 +65,9 @@ class Enemy(object):
 				self.vy = -.1
 			if py > self.y:
 				self.vy = .1
+
+		if self.healthbar.getHealth() <= 0:
+			self.visible = False
 
 		self.x += self.vx
 		self.y += self.vy
