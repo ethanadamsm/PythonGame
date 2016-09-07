@@ -13,10 +13,15 @@ class Inventory(object):
 
 	def update(self):
 		for item in self.itemList:
-			print("updating item")
 			item.update()
 
 	def moveItem(self, vx, vy):
-		print("moving")
 		self.itemList[0].setVelX(vx)
 		self.itemList[0].setVelY(vy)
+
+	def setItem(self, x, y):
+		self.itemList[0].setX(x)
+		self.itemList[0].setY(y)
+
+	def rotateItem(self, angle):
+		self.itemList[0].rotateItem(angle)
