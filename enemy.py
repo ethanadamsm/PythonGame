@@ -71,3 +71,9 @@ class Enemy(object):
 		
 	def getBox(self):
 		return [self.x, self.y, self.w, self.h]
+
+	def setHealth(self, health):
+		self.healthbar.setHealth(health)
+
+	def getHealth(self):
+		return self.healthbar.getHealth()
