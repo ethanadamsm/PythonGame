@@ -73,6 +73,7 @@ class Enemy(object):
 		self.y += self.vy
 
 		self.bindHealth()
+		self.healthbar.update()
 		
 	def getBox(self):
 		return [self.x, self.y, self.w, self.h]
