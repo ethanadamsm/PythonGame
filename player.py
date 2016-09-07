@@ -96,4 +96,3 @@ class Player(object):
 	def getItemH(self):
 		return self.inven.getH()
 
-
