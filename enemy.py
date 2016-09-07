@@ -1,4 +1,4 @@
-import sys, pygame
+import sys, pygame, healthbar
 
 class Enemy(object):
 	def __init__(self, x, y, w, h, vx, vy, image):
@@ -9,9 +9,11 @@ class Enemy(object):
 			self.vx = vx
 			self.vy = vy
 			self.image = image
+			self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
+		self.healthbar.render(screen)
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -31,11 +33,21 @@ class Enemy(object):
 	def getY(self):
 		return self.y
 
+	def getW(self):
+		return self.w
+
+	def getH(self):
+		return self.h
+
 	def setX(self, x):
 		self.x = x
 
 	def setY(self, y):
 		self.y = y
+
+	def bindHealth(self):
+		self.healthbar.setX(self.x - 10)
+		self.healthbar.setY(self.y - 30)
 
 	def update(self, px, py, d, a):
 		if d:
@@ -54,4 +66,8 @@ class Enemy(object):
 
 		self.x += self.vx
 		self.y += self.vy
+
+		self.bindHealth()
 		
+	def getBox(self):
+		return [self.x, self.y, self.w, self.h]
