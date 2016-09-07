@@ -39,7 +39,7 @@ def update():
 	if backgroundx >= 0:
 		backgroundx = 0
 	if checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
-		zombie.setHealth(zombie.getHealth() - 1)
+		zombie.setHealth(zombie.getHealth() - .3)
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
 	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
