@@ -12,7 +12,7 @@ zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
-player.addItem(sword.Sword(300, 230))
+player.addItem(sword.Sword(300, 230, 125, 30))
 zombie = enemy.Enemy(400, 190, 50, 100, 0, 0, zombie)
 
 backgroundx = 0
@@ -38,6 +38,11 @@ def update():
 	backgroundy += bvely
 	if backgroundx >= 0:
 		backgroundx = 0
+	if checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
+		print("hit")
+
+def checkCollision(x, y, w, h, x2, y2, w2, h2):
+	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
 
 while 1:
 	#global backgroundx
@@ -72,6 +77,7 @@ while 1:
 				player.addItem()
 			elif event.key == pygame.K_SPACE:
 				player.rotateItem(270)
+
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
