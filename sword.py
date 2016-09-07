@@ -7,6 +7,7 @@ class Sword:
 		self.vx = 0
 		self.vy = 0
 		self.image = pygame.image.load("sword.png")
+		self.image = pygame.transform.rotate(self.image, 90)
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
@@ -26,5 +27,14 @@ class Sword:
 
 	def setVelY(self, vy):
 		self.vy = vy
+
+	def setX(self, x):
+		self.x = x
+
+	def setY(self, y):
+		self.y = y
+
+	def rotateItem(self, angle):
+		self.image = pygame.transform.rotate(self.image, angle)
 
 
