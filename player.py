@@ -78,7 +78,22 @@ class Player(object):
 
 	def rotateItem(self, angle):
 		self.down = not self.down
-		print(self.down)
 		self.inven.rotateItem(angle)
+
+	def getItemBox(self):
+		box = [self.inven.getX(), self.inven.getY(), self.inven.getW(), self.inven.getH()]
+		return box
+
+	def getItemX(self):
+		return self.inven.getX()
+
+	def getItemY(self):
+		return self.inven.getY()
+
+	def getItemW(self):
+		return self.inven.getW()
+
+	def getItemH(self):
+		return self.inven.getH()
 
 
