@@ -1,9 +1,11 @@
 import sys, pygame
 
 class Sword:
-	def __init__(self, x, y):
+	def __init__(self, x, y, w, h):
 		self.x = x
 		self.y = y
+		self.w = w
+		self.h = h
 		self.vx = 0
 		self.vy = 0
 		self.image = pygame.image.load("sword.png")
@@ -15,6 +17,18 @@ class Sword:
 	def update(self):
 		self.x += self.vx
 		self.y += self.vy
+
+	def getX(self):
+		return self.x
+
+	def getY(self):
+		return self.y
+
+	def getW(self):
+		return self.w
+
+	def getH(self):
+		return self.h
 
 	def getVelX(self):
 		return self.vx
