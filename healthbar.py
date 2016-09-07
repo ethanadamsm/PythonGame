@@ -11,6 +11,8 @@ class Healthbar():
 		self.image = pygame.image.load("healthbar.png")
 
 	def render(self, screen):
+		if self.health < 0:
+			self.health = 0
 		self.image = pygame.transform.scale(self.image, (75 * (self.health / self.totalhealth), 25))
 		screen.blit(self.image, (self.x, self.y))
 
