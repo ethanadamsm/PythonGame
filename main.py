@@ -48,14 +48,14 @@ while 1:
 		if event.type == pygame.KEYDOWN: #keydown
 			if event.key == pygame.K_w:
 				player.setVelY(-1)
-				player.moveItem(0, -1)
+				#player.moveItem(0, -1)
 			elif event.key == pygame.K_s:
 				player.setVelY(1)
-				player.moveItem(0, 1)
+				#player.moveItem(0, 1)
 			elif event.key == pygame.K_d:
 				if player.getX() < 295:
 					player.setVelX(1)
-					player.moveItem(1, 0)
+					#player.moveItem(1, 0)
 				else:
 					bvelx = -1
 					#zombie.setVelX(zombie.getVelX() - 1) 
@@ -63,24 +63,28 @@ while 1:
 			elif event.key == pygame.K_a:
 				if(backgroundx >= 0):
 					player.setVelX(-1)
-					player.moveItem(-1, 0)
+					#player.moveItem(-1, 0)
 				else:
 					bvelx = 1
 					if player.getVelX != 0:
 						a = True
 			elif event.key == pygame.K_g:
 				player.addItem()
+			elif event.key == pygame.K_SPACE:
+				player.rotateItem(270)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
-				player.moveItem(0, 0)
+				#player.moveItem(0, 0)
 			elif event.key == pygame.K_d or event.key == pygame.K_a:
 				player.setVelX(0)
-				player.moveItem(0, 0)
+				#player.moveItem(0, 0)
 				bvelx = 0
 				#zombie.setVelX(zombie.getVelX() + 1)
 				d = False
 				a = False
+			elif event.key == pygame.K_SPACE:
+				player.rotateItem(90)
 	update()
 
 	
