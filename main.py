@@ -12,7 +12,7 @@ zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
-player.addItem(sword.Sword(300, 230, 125, 30))
+player.addItem(sword.Sword(300, 230, 10, 40))
 zombie = enemy.Enemy(400, 190, 50, 100, 0, 0, zombie)
 
 backgroundx = 0
@@ -77,7 +77,7 @@ while 1:
 				player.addItem()
 			elif event.key == pygame.K_SPACE:
 				player.rotateItem(270)
-
+				player.setAttackLeft(True)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
@@ -90,6 +90,7 @@ while 1:
 				d = False
 				a = False
 			elif event.key == pygame.K_SPACE:
+				player.setAttackLeft(False)
 				player.rotateItem(90)
 	update()
 
