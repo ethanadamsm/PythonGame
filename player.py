@@ -1,6 +1,14 @@
 import sys, pygame, inventory, healthbar
 
 class Player(object):
+
+	def getAnimationImages(self, prefix, suffix, n):
+		images = []
+		for x in range (1, n):
+			current = str(x)
+			images.append(pygame.image.load(prefix + current + suffix))
+		return images
+
 	def __init__(self, x, y, w, h, vx, vy, image):
 		self.x = x
 		self.y = y
@@ -8,15 +16,23 @@ class Player(object):
 		self.h = h
 		self.vx = vx
 		self.vy = vy
+		self.current = 0
+		self.frame = 0
 		self.image = image
+		self.attackleft = False
 		self.inven = inventory.Inventory()
 		self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
 		self.down = False
+		self.leftAttackAnimation = self.getAnimationImages("playerrec/leftattack", ".png", 6)
 
 	def render(self, screen):
-		screen.blit(self.image, (self.x, self.y))
+		if(self.attackleft):
+			screen.blit(self.leftAttackAnimation[self.current], (self.x, self.y))
+		else:
+			screen.blit(self.image, (self.x, self.y))
 		self.healthbar.render(screen)
 		self.inven.render(screen)
+		self.frame += 1
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -48,9 +64,9 @@ class Player(object):
 
 	def bindItem(self):
 		if self.down == False:
-			self.inven.setItem(self.x + 20, self.y - 70)
+			self.inven.setItem(self.x + 2, self.y + 19)
 		else:
-			self.inven.setItem(self.x + 20, self.y + 40)
+			self.inven.setItem(self.x + 35, self.y + 45)
 
 	def update(self):
 		self.x += self.vx
@@ -66,6 +82,13 @@ class Player(object):
 		self.inven.update()
 		self.bindItem()
 		self.bindHealth()
+		if(self.attackleft):
+			if(self.frame % 15 == 0.0):
+				self.current += 1 
+				if(self.current >= len(self.leftAttackAnimation)):
+					self.current = 0
+					self.attackleft = False
+					self.inven.rotateItem(90)
 
 	def addItem(self, item):
 		self.inven.addItem(item)
@@ -96,3 +119,5 @@ class Player(object):
 	def getItemH(self):
 		return self.inven.getH()
 
+	def setAttackLeft(self, attackleft):
+		self.attackleft = attackleft
