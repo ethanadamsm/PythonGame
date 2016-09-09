@@ -76,6 +76,12 @@ class Player(object):
 		else:
 			self.inven.setItem(self.x + 35, self.y + 45)
 
+	def setHealth(self, health):
+		self.healthbar.setHealth(health)
+
+	def getHealth(self):
+		return self.healthbar.getHealth()
+
 	def update(self):
 		self.x += self.vx
 		self.y += self.vy
