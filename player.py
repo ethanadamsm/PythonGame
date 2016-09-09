@@ -20,14 +20,22 @@ class Player(object):
 		self.frame = 0
 		self.image = image
 		self.attackleft = False
+		self.left = False
+		self.right = False
 		self.inven = inventory.Inventory()
 		self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
 		self.down = False
 		self.leftAttackAnimation = self.getAnimationImages("playerrec/leftattack", ".png", 6)
+		self.leftAnimation = self.getAnimationImages("playerrec/left", ".png", 5)
+		self.rightAnimation = self.getAnimationImages("playerrec/right", ".png", 5)
 
 	def render(self, screen):
 		if(self.attackleft):
 			screen.blit(self.leftAttackAnimation[self.current], (self.x, self.y))
+		elif(self.left):
+			screen.blit(self.leftAnimation[self.current], (self.x, self.y))
+		elif(self.right):
+			screen.blit(self.rightAnimation[self.current], (self.x, self.y))
 		else:
 			screen.blit(self.image, (self.x, self.y))
 		self.healthbar.render(screen)
@@ -88,7 +96,16 @@ class Player(object):
 				if(self.current >= len(self.leftAttackAnimation)):
 					self.current = 0
 					self.attackleft = False
-					self.inven.rotateItem(90)
+		elif(self.left):
+			if(self.frame % 20 == 0.0):
+				self.current += 1
+				if(self.current >= len(self.leftAnimation)):
+					self.current = 0
+		elif(self.right):
+			if(self.frame % 20 == 0.0):
+				self.current += 1
+				if(self.current >= len(self.leftAnimation)):
+					self.current = 0
 
 	def addItem(self, item):
 		self.inven.addItem(item)
@@ -121,3 +138,9 @@ class Player(object):
 
 	def setAttackLeft(self, attackleft):
 		self.attackleft = attackleft
+
+	def setLeft(self, left):
+		self.left = left
+
+	def setRight(self, right):
+		self.right = right
