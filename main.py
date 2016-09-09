@@ -58,6 +58,7 @@ while 1:
 				player.setVelY(1)
 				#player.moveItem(0, 1)
 			elif event.key == pygame.K_d:
+				player.setLeft(True)
 				if player.getX() < 295:
 					player.setVelX(1)
 					#player.moveItem(1, 0)
@@ -66,6 +67,7 @@ while 1:
 					#zombie.setVelX(zombie.getVelX() - 1) 
 					d = True
 			elif event.key == pygame.K_a:
+				player.setRight(True)
 				if(backgroundx >= 0):
 					player.setVelX(-1)
 					#player.moveItem(-1, 0)
@@ -83,6 +85,8 @@ while 1:
 				player.setVelY(0)
 				#player.moveItem(0, 0)
 			elif event.key == pygame.K_d or event.key == pygame.K_a:
+				player.setLeft(False)
+				player.setRight(False)
 				player.setVelX(0)
 				#player.moveItem(0, 0)
 				bvelx = 0
