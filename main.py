@@ -11,8 +11,10 @@ character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
 
+items = []
+
 player = player.Player(295, 190, 50, 100, 0, 0, character)
-player.addItem(sword.Sword(300, 230, 10, 40))
+player.addItem(sword.Sword(300, 230, 40, 10))
 zombie = enemy.Enemy(400, 190, 50, 100, 0, 0, zombie)
 
 backgroundx = 0
@@ -28,6 +30,8 @@ def render():
 	player.render(screen)
 	zombie.render(screen)
 	pygame.display.flip()
+	for item in items:
+		item.render(screen)
 
 def update():
 	global backgroundx
@@ -40,6 +44,10 @@ def update():
 		backgroundx = 0
 	if checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
 		zombie.setHealth(zombie.getHealth() - .3)
+	if checkCollision(player.getX(), player.getY(), 50, 100, zombie.getX(), zombie.getY(), zombie.getX(), zombie.getY()):
+		player.setHealth(player.getHealth() - .5)
+	if zombie.getAlive() == False:
+		items.append(zombie.getDroppedItem())
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
 	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
