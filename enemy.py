@@ -1,4 +1,4 @@
-import sys, pygame, healthbar
+import sys, pygame, healthbar, random, item
 
 class Enemy(object):
 	def __init__(self, x, y, w, h, vx, vy, image):
@@ -11,11 +11,15 @@ class Enemy(object):
 			self.image = image
 			self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
 			self.visible = True
+			self.alive = True
+			self.frame = 0
+			self.droppedItem = ""
 
 	def render(self, screen):
 		if self.visible:
 			screen.blit(self.image, (self.x, self.y))
 			self.healthbar.render(screen)
+		self.frame += 1
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -31,6 +35,7 @@ class Enemy(object):
 
 	def getX(self):
 		return self.x
+
 
 	def getY(self):
 		return self.y
@@ -68,6 +73,11 @@ class Enemy(object):
 
 		if self.healthbar.getHealth() <= 0:
 			self.visible = False
+			self.alive = False
+			#randomnum = randint(0, 9)
+			#if(randomnum == 0 or randomnum == 1):
+			self.droppedItem = item.Item(self.x + 25, self.y + 75, pygame.image.load("coin.png"))
+			self.frame = 0
 
 		self.x += self.vx
 		self.y += self.vy
@@ -83,3 +93,15 @@ class Enemy(object):
 
 	def getHealth(self):
 		return self.healthbar.getHealth()
+
+	def getAlive(self):
+		return self.alive
+
+	def getDroppedItem(self):
+		return self.droppedItem
+
+	def setDroppedItem(self, droppedItem):
+		self.droppedItem = droppedItem
+
+	def getFrame(self):
+		return self.frame
