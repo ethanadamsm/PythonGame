@@ -1,18 +1,21 @@
 import sys, pygame
 
 class Sword:
-	def __init__(self, x, y, w, h):
+	def __init__(self, x, y, w, h, image):
 		self.x = x
 		self.y = y
 		self.w = w
 		self.h = h
 		self.vx = 0
 		self.vy = 0
-		self.image = pygame.image.load("sword.png")
-		self.image = pygame.transform.rotate(self.image, 90)
+		self.images = pygame.image.load(image)
+		self.image = pygame.image.load(image)
+		self.images = pygame.transform.rotate(self.images, 90)
+		self.visible = True
 
 	def render(self, screen):
-		screen.blit(self.image, (self.x, self.y))
+		if(self.visible):
+			screen.blit(self.images, (self.x, self.y))
 
 	def update(self):
 		self.x += self.vx
@@ -49,6 +52,12 @@ class Sword:
 		self.y = y
 
 	def rotateItem(self, angle):
-		self.image = pygame.transform.rotate(self.image, angle)
+		self.images = pygame.transform.rotate(self.images, angle)
+
+	def getImage(self):
+		return self.image
+
+	def setVisible(self, visible):
+		self.visible = visible
 
 
