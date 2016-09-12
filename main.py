@@ -14,7 +14,10 @@ background = pygame.image.load("background.png")
 items = []
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
-player.addItem(sword.Sword(300, 230, 40, 10))
+player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
+player.addItem(sword.Sword(300, 230, 70, 20, "sword2.png"))
+player.getItem(1).setVisible(False)
+
 zombie = enemy.Enemy(400, 190, 50, 100, 0, 0, zombie)
 
 backgroundx = 0
