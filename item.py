@@ -8,3 +8,6 @@ class Item():
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
+
+	def getImage(self):
+		return self.image
