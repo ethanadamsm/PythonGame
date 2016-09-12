@@ -150,3 +150,6 @@ class Player(object):
 
 	def setRight(self, right):
 		self.right = right
+
+	def getItem(self, index):
+		return self.inven.getItem(index)
