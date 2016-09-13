@@ -5,13 +5,16 @@ class Inventory(object):
 		self.itemList = []
 		self.image = pygame.image.load("inventory.png")
 		self.font = pygame.font.SysFont("comicsansms", 30)
+		self.current = 0
+		self.invensel = pygame.image.load("inventorysel.png")
 
 	def addItem(self, item):
 		self.itemList.append(item)
 
 	def render(self, screen):
 		for item in self.itemList:
-			item.render(screen)
+			#item.render(screen)
+			print("")
 		screen.blit(self.image, (10, 420))
 		x = 20
 		y = 430
@@ -19,13 +22,13 @@ class Inventory(object):
 		for item in self.itemList:
 			scalex = 50 / item.getW()
 			scaley = 50 / item.getH()
-			screen.blit
 			cur = pygame.transform.scale(item.getImage(), (scalex, scaley))
 			screen.blit(item.getImage(), (x, y))
 			text = self.font.render(str(num), True, (0, 0, 0))
 			screen.blit(text, (x, 380))
 			x += 50
 			num += 1
+		screen.blit(self.invensel, ((self.current * 50) + 10, 422))
 
 	def update(self):
 		for item in self.itemList:
@@ -56,3 +59,12 @@ class Inventory(object):
 
 	def getItem(self, index):
 		return self.itemList[index]
+
+	def setCurrent(self, current):
+		self.current = current
+
+	def getCurrent(self):
+		return self.current
+
+	def getInventory(self):
+		return self.itemList
