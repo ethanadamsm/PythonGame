@@ -153,3 +153,9 @@ class Player(object):
 
 	def getItem(self, index):
 		return self.inven.getItem(index)
+
+	def setCurrent(self, current):
+		self.inven.setCurrent(current)
+
+	def getInventory(self):
+		return self.inven.getInventory()
