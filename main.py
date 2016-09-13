@@ -11,8 +11,6 @@ character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
 
-items = []
-
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
 player.addItem(sword.Sword(300, 230, 70, 20, "sword2.png"))
@@ -33,8 +31,6 @@ def render():
 	player.render(screen)
 	zombie.render(screen)
 	pygame.display.flip()
-	for item in items:
-		item.render(screen)
 
 def update():
 	global backgroundx
@@ -91,6 +87,11 @@ while 1:
 			elif event.key == pygame.K_SPACE:
 				player.rotateItem(270)
 				player.setAttackLeft(True)
+			elif event.key == pygame.K_1:
+				player.setCurrent(0)
+			if(len(player.getInventory()) > 1):
+				if event.key == pygame.K_2:
+					player.setCurrent(1)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
