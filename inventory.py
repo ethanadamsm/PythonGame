@@ -12,9 +12,8 @@ class Inventory(object):
 		self.itemList.append(item)
 
 	def render(self, screen):
-		for item in self.itemList:
-			#item.render(screen)
-			print("")
+		#self.itemList[self.current].render(screen)
+		screen.blit(self.itemList[self.current].getImages(), (self.itemList[self.current].getX(), self.itemList[self.current].getY()))
 		screen.blit(self.image, (10, 420))
 		x = 20
 		y = 430
@@ -35,27 +34,27 @@ class Inventory(object):
 			item.update()
 
 	def moveItem(self, vx, vy):
-		self.itemList[0].setVelX(vx)
-		self.itemList[0].setVelY(vy)
+		self.itemList[self.current].setVelX(vx)
+		self.itemList[self.current].setVelY(vy)
 
 	def setItem(self, x, y):
-		self.itemList[0].setX(x)
-		self.itemList[0].setY(y)
+		self.itemList[self.current].setX(x)
+		self.itemList[self.current].setY(y)
 
 	def rotateItem(self, angle):
-		self.itemList[0].rotateItem(angle)
+		self.itemList[self.current].rotateItem(angle)
 
 	def getX(self):
-		return self.itemList[0].getX()
+		return self.itemList[self.current].getX()
 
 	def getY(self):
-		return self.itemList[0].getY()
+		return self.itemList[self.current].getY()
 
 	def getW(self):
-		return self.itemList[0].getW()
+		return self.itemList[self.current].getW()
 
 	def getH(self):
-		return self.itemList[0].getH()
+		return self.itemList[self.current].getH()
 
 	def getItem(self, index):
 		return self.itemList[index]
