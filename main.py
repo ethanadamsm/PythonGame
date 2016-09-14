@@ -24,6 +24,7 @@ bvelx = 0
 bvely = 0
 d = False
 a = False
+items = []
 
 def render():
 	screen.fill(black)
@@ -43,7 +44,7 @@ def update():
 		backgroundx = 0
 	if checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
 		zombie.setHealth(zombie.getHealth() - .3)
-	if checkCollision(player.getX(), player.getY(), 50, 100, zombie.getX(), zombie.getY(), zombie.getX(), zombie.getY()):
+	if checkCollision(player.getX(), player.getY(), 50, 100, zombie.getX(), zombie.getY(), zombie.getX(), zombie.getY()) and zombie.getAlive():
 		player.setHealth(player.getHealth() - .5)
 	if zombie.getAlive() == False:
 		items.append(zombie.getDroppedItem())
@@ -89,9 +90,9 @@ while 1:
 				player.setAttackLeft(True)
 			elif event.key == pygame.K_1:
 				player.setCurrent(0)
-			if(len(player.getInventory()) > 1):
-				if event.key == pygame.K_2:
-					player.setCurrent(1)
+			#if(len(player.getInventory()) > 1):
+			if event.key == pygame.K_2:
+				player.setCurrent(1)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
