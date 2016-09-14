@@ -11,3 +11,12 @@ class Item():
 
 	def getImage(self):
 		return self.image
+
+	def getX(self):
+		return self.x
+
+	def getY(self):
+		return self.y
+
+	def getImage(self):
+		return self.image
