@@ -7,7 +7,7 @@ class Item():
 		self.image = image
 
 	def render(self, screen):
-		screen.blit(self.image, (self.x, self.y))
+		screen.blit(self.image, (int(self.x), int(self.y)))
 
 	def getImage(self):
 		return self.image
