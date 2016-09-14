@@ -57,6 +57,9 @@ class Sword:
 	def getImage(self):
 		return self.image
 
+	def getImages(self):
+		return self.images
+
 	def setVisible(self, visible):
 		self.visible = visible
 
