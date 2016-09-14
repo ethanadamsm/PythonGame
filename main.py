@@ -30,24 +30,35 @@ def render():
 	screen.fill(black)
 	screen.blit(background, (backgroundx, backgroundy))
 	player.render(screen)
-	zombie.render(screen)
+	if zombie != "":
+		zombie.render(screen)
 	pygame.display.flip()
+	if zombie == "":
+		screen.blit(items[0].getImage(), (items[0].getX(), items[0].getY()))
+		for item in items:
+			item.render(screen)
 
 def update():
 	global backgroundx
 	global backgroundy
+	global zombie
 	player.update()
-	zombie.update(player.getX(), player.getY(), d, a)
 	backgroundx += bvelx
 	backgroundy += bvely
 	if backgroundx >= 0:
 		backgroundx = 0
-	if checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
+	if zombie != "" and checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), zombie.getX(), zombie.getY(), zombie.getW(), zombie.getH()):
 		zombie.setHealth(zombie.getHealth() - .3)
-	if checkCollision(player.getX(), player.getY(), 50, 100, zombie.getX(), zombie.getY(), zombie.getX(), zombie.getY()) and zombie.getAlive():
+	if zombie != "" and checkCollision(player.getX(), player.getY(), 50, 100, zombie.getX(), zombie.getY(), zombie.getX(), zombie.getY()):
 		player.setHealth(player.getHealth() - .5)
-	if zombie.getAlive() == False:
-		items.append(zombie.getDroppedItem())
+	if zombie != "":
+		zombie.update(player.getX(), player.getY(), d, a)
+		if zombie.getAlive() == False:
+			items.append(zombie.getDroppedItem())
+			zombie = ""
+			print items[0].getX()
+			print items[0].getY()
+			print items[0].getImage()
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
 	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
