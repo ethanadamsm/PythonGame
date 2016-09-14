@@ -96,7 +96,7 @@ while 1:
 						a = True
 			elif event.key == pygame.K_g:
 				player.addItem()
-			elif event.key == pygame.K_SPACE:
+			elif event.key == pygame.K_SPACE and event.key != pygame.K_1 and event.key != pygame.K_2:
 				player.rotateItem(270)
 				player.setAttackLeft(True)
 			elif event.key == pygame.K_1:
