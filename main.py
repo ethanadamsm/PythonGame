@@ -59,6 +59,8 @@ def update():
 			print items[0].getX()
 			print items[0].getY()
 			print items[0].getImage()
+	for item in items:
+		item.update(d, a)
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
 	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
