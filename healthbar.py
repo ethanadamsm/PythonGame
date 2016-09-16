@@ -14,7 +14,7 @@ class Healthbar():
 		if self.health < 0:
 			self.health = 0
 		self.image = pygame.transform.scale(self.image, (int(75.0 * (self.health / self.totalhealth)), 25))
-		screen.blit(self.image, (self.x, self.y))
+		screen.blit(self.image, (self.x, self.y))	
 
 	def update(self):
 		if self.health < 0:
