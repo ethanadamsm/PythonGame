@@ -32,11 +32,11 @@ def render():
 	player.render(screen)
 	if zombie != "":
 		zombie.render(screen)
-	pygame.display.flip()
 	if zombie == "":
 		screen.blit(items[0].getImage(), (items[0].getX(), items[0].getY()))
-		for item in items:
-			item.render(screen)
+	for item in items:
+		item.render(screen)
+	pygame.display.flip()
 
 def update():
 	global backgroundx
