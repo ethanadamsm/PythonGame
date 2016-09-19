@@ -1,4 +1,4 @@
-import sys, pygame, player, enemy, sword
+import sys, pygame, player, enemy, sword, gui
 pygame.init()
 pygame.display.set_caption('Basic Pygame program')
 
@@ -10,6 +10,11 @@ screen = pygame.display.set_mode(size)
 character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
+
+playerGui = gui.Gui(430, 10, 200, 460)
+playerGui.setVisible(False)
+playerGui.addBox(440, 30, 180, 180)
+playerGui.addImage(0, pygame.image.load("playerpro.png"))
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
@@ -36,6 +41,7 @@ def render():
 		screen.blit(items[0].getImage(), (items[0].getX(), items[0].getY()))
 	for item in items:
 		item.render(screen)
+	playerGui.render(screen)
 	pygame.display.flip()
 
 def update():
@@ -103,6 +109,8 @@ while 1:
 				player.setAttackLeft(True)
 			elif event.key == pygame.K_1:
 				player.setCurrent(0)
+			elif event.key == pygame.K_i:
+				playerGui.setVisible(True)
 			#if(len(player.getInventory()) > 1):
 			if event.key == pygame.K_2:
 				player.setCurrent(1)
@@ -122,6 +130,8 @@ while 1:
 			elif event.key == pygame.K_SPACE:
 				player.setAttackLeft(False)
 				player.rotateItem(90)
+			elif event.key == pygame.K_i:
+				playerGui.setVisible(False)
 	update()
 
 	
