@@ -7,6 +7,7 @@ class Box():
 		self.w = w
 		self.h = h
 		self.visible = False
+		self.image = pyagme.image.load("square.png")
 
 	def render(self, screen):
 		if self.visible:
