@@ -15,6 +15,11 @@ playerGui = gui.Gui(430, 10, 200, 460)
 playerGui.setVisible(False)
 playerGui.addBox(440, 30, 180, 180)
 playerGui.addImage(0, pygame.image.load("playerpro.png"))
+playerGui.addBox(440, 220, 40, 40)
+playerGui.setBoxVisible(1, True)
+playerGui.setBoxText(1, "0")
+playerGui.setBoxFontSize(1, 20)
+playerGui.addImage(1, pygame.image.load("square.png"))
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
@@ -37,8 +42,6 @@ def render():
 	player.render(screen)
 	if zombie != "":
 		zombie.render(screen)
-	if zombie == "":
-		screen.blit(items[0].getImage(), (items[0].getX(), items[0].getY()))
 	for item in items:
 		item.render(screen)
 	playerGui.render(screen)
@@ -67,6 +70,12 @@ def update():
 			print items[0].getImage()
 	for item in items:
 		item.update(d, a)
+		if checkCollision(player.getX(), player.getY(), 50, 100, item.getX(), item.getY(), item.getW(), item.getH()):
+			if(item.getVisible()):
+				num = int(playerGui.getBoxText(1)) + 1
+				playerGui.setBoxText(1, str(num))
+			item.setVisible(False)
+
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
 	return ((x < x2 + w2) and (x + w > x2) and (y < y2 + h2) and (y + h > y2))
