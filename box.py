@@ -7,13 +7,31 @@ class Box():
 		self.w = w
 		self.h = h
 		self.visible = False
-		self.image = pyagme.image.load("square.png")
+		self.font = pygame.font.SysFont("comicsansms", 30)
+		self.image = ""
+		self.text = 0
 
 	def render(self, screen):
-		if self.visible:
+		if self.visible and self.image != "":
 			screen.blit(self.image, (self.x, self. y))
+		if self.text != 0:
+			text = self.font.render(self.text, True, (0, 0, 0))
+			screen.blit(text, ((self.w / 2) + self.x, (self.h / 2) + self.y))
 
 	def addImage(self, image):
 		self.image = image
 		self.image = pygame.transform.scale(self.image, (self.w, self.h))
 		self.visible = True
+
+	def setFontSize(self, size):
+		self.font = pygame.font.SysFont("comicsansms", size)
+
+	def setText(self, text):
+		print(text)
+		self.text = text
+
+	def getText(self):
+		return self.text
+
+	def setVisible(self, visible):
+		self.visible = visible
