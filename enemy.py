@@ -14,6 +14,7 @@ class Enemy(object):
 			self.alive = True
 			self.frame = 0
 			self.droppedItem = ""
+			self.typee = "zombie"
 
 	def render(self, screen):
 		if self.visible:
@@ -35,7 +36,6 @@ class Enemy(object):
 
 	def getX(self):
 		return self.x
-
 
 	def getY(self):
 		return self.y
@@ -105,3 +105,6 @@ class Enemy(object):
 
 	def getFrame(self):
 		return self.frame
+
+	def getTypeE(self):
+		return self.typee
