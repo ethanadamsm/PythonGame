@@ -27,7 +27,6 @@ class Box():
 		self.font = pygame.font.SysFont("comicsansms", size)
 
 	def setText(self, text):
-		print(text)
 		self.text = text
 
 	def getText(self):
