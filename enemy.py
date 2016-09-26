@@ -56,7 +56,7 @@ class Enemy(object):
 		self.healthbar.setX(self.x - 10)
 		self.healthbar.setY(self.y - 30)
 
-	def update(self, px, py, d, a):
+	def update(self, px, py, d, a): #to-do 5
 		if d:
 			self.x -= 2 
 		elif a:
