@@ -78,6 +78,7 @@ class Enemy(object):
 			#if(randomnum == 0 or randomnum == 1):
 			self.droppedItem = item.Item(self.x + 25, self.y + 75, 20, 20, pygame.image.load("coin.png"))
 			self.frame = 0
+			print("creating item")
 
 		self.x += self.vx
 		self.y += self.vy
