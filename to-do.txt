@@ -1,0 +1,13 @@
+To-Do list:
+-add main menu and settings
+		-add save and load settings
+		-add setting for different settings
+				-brightness
+				-controls
+-add levels
+		-level based game?
+-start on story
+		-story points
+-add more creatues(a lot of work)
+		-
+add speed marks when moving across the map
