@@ -58,9 +58,9 @@ class Enemy(object):
 
 	def update(self, px, py, d, a):
 		if d:
-			self.x -= 1 
+			self.x -= 2 
 		elif a:
-			self.x += 1
+			self.x += 2
 		else:
 			if px < self.x:
 				self.vx = -.1
