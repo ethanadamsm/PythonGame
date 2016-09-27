@@ -5,6 +5,8 @@ pygame.display.set_caption('Basic Pygame program')
 size = width, height, = 640, 480
 black = 0, 0, 0
 
+start = False
+
 screen = pygame.display.set_mode(size)
 
 character = pygame.image.load("character.png")
@@ -31,6 +33,10 @@ playerGui.setBoxFontSize(1, 20)
 playerGui.setBoxText(1, "Coins:")
 playerGui.addImage(3, pygame.image.load("coin.png"))
 
+menuGui = gui.Gui(50, 50, 540, 380)
+menuGui.addButton(60, 60, 100, 50)
+menuGui.addImageButton(0, pygame.image.load("gui.png"))
+
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
 player.addItem(sword.Sword(300, 230, 70, 20, "sword2.png"))
@@ -54,6 +60,7 @@ def render():
 	for item in items: #item update loop
 		item.render(screen)
 	playerGui.render(screen)
+	menuGui.render(screen)
 	pygame.display.flip()
 
 def update():
