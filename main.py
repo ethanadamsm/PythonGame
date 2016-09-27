@@ -47,7 +47,7 @@ items = []
 def render():
 	screen.fill(black)
 	screen.blit(background, (backgroundx, backgroundy))
-	player.render(screen)
+	player.render(screen, d, a)
 	for enemy in enemies:
 		if enemy != "":
 			enemy.render(screen)
