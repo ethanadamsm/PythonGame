@@ -1,5 +1,5 @@
 To-Do list:
--add main menu and settings
+-add main menu and settings(started)
 		-add save and load settings
 		-add setting for different settings
 				-brightness
