@@ -1,4 +1,4 @@
-import sys, pygame, box
+import sys, pygame, box, button
 
 class Gui:
 	def __init__(self, x, y, w, h):
@@ -8,6 +8,7 @@ class Gui:
 		self.h = h
 		self.visible = True
 		self.boxes = []
+		self.buttons = []
 		self.image = pygame.image.load("gui.png")
 
 	def render(self, screen):
@@ -23,11 +24,20 @@ class Gui:
 	def setBoxVisible(self, index, visible):
 		self.boxes[index].setVisible(visible)
 
+	def setButtonVisible(self, index, visible):
+		self.buttons[index].setVisible(visible)
+
 	def addBox(self, x, y, w, h):
 		self.boxes.append(box.Box(x, y, w, h))
 
+	def addButton(self, x, y, w, h):
+		self.buttons.append(button.Button(x, y, w, h))
+
 	def addImage(self, index, image):
 		self.boxes[index].addImage(image)
+
+	def addImageButton(self, index, image):
+		self.buttons[index].addImage(image)
 
 	def setBoxText(self, index, text):
 		self.boxes[index].setText(text)
