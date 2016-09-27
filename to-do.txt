@@ -10,4 +10,3 @@ To-Do list:
 		-story points
 -add more creatues(a lot of work)
 		-
-add speed marks when moving across the map
