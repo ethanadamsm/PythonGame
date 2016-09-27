@@ -44,6 +44,9 @@ class Gui:
 	def setBoxText(self, index, text):
 		self.boxes[index].setText(text)
 
+	def setButtonText(self, index, text):
+		self.buttons[index].setText(text)
+
 	def setBoxFontSize(self, index, fontSize):
 		self.boxes[index].setFontSize(fontSize)
 
