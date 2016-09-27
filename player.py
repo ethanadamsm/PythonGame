@@ -28,8 +28,10 @@ class Player(object):
 		self.leftAttackAnimation = self.getAnimationImages("playerrec/leftattack", ".png", 6)
 		self.leftAnimation = self.getAnimationImages("playerrec/left", ".png", 5)
 		self.rightAnimation = self.getAnimationImages("playerrec/right", ".png", 5)
+		self.speedimage = pygame.image.load("speedm.png")
+		self.speedimaged = pygame.transform.rotate(self.speedimage, 180)
 
-	def render(self, screen):
+	def render(self, screen, d, a):
 		if(self.attackleft):
 			screen.blit(self.leftAttackAnimation[self.current], (self.x, self.y))
 		elif(self.left):
@@ -41,6 +43,10 @@ class Player(object):
 		self.healthbar.render(screen)
 		self.inven.render(screen)
 		self.frame += 1
+		if d:
+			screen.blit(self.speedimaged, (self.x - 20, self.y))
+		if a:
+			screen.blit(self.speedimage, (self.x + 50, self.y))
 
 	def setVelX(self, vx):
 		self.vx = vx
