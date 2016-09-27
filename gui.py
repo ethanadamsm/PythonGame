@@ -17,6 +17,8 @@ class Gui:
 			self.image = pygame.transform.scale(self.image, (self.w, self.h))
 			for box in self.boxes:
 				box.render(screen)
+			for button in self.buttons:
+				button.render(screen)
 
 	def setVisible(self, visible):
 		self.visible = visible
