@@ -34,8 +34,9 @@ playerGui.setBoxText(1, "Coins:")
 playerGui.addImage(3, pygame.image.load("coin.png"))
 
 menuGui = gui.Gui(50, 50, 540, 380)
-menuGui.addButton(60, 60, 100, 50)
-menuGui.addImageButton(0, pygame.image.load("gui.png"))
+menuGui.addButton(220, 90, 200, 50)
+menuGui.addImageButton(0, pygame.image.load("square.png"))
+menuGui.setButtonText(0, "Play")
 
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
