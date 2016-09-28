@@ -16,7 +16,7 @@ class Box():
 			screen.blit(self.image, (self.x, self. y))
 		if self.text != 0:
 			text = self.font.render(self.text, True, (0, 0, 0))
-			screen.blit(text, (((self.w / 2) + self.x) - (self.font.size(self.text)[0]) / 2, ((self.h / 2) + self.y)) - (self.font.size(self.text)[1] / 2))
+			screen.blit(text, (((self.w / 2) + self.x) - (self.font.size(self.text)[0] / 2), ((self.h / 2) + self.y) - (self.font.size(self.text)[1] / 2)))
 
 	def addImage(self, image):
 		self.image = image
