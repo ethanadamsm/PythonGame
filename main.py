@@ -12,6 +12,7 @@ screen = pygame.display.set_mode(size)
 character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
 background = pygame.image.load("background.png")
+menubackground = pygame.image.load("menubackground.png")
 enemies = []
 enemies.append(enemy.Enemy(400, 190, 50, 100, 0, 0, zombie))
 enemies.append(enemy.Enemy(700, 300, 50, 100, 0, 0, zombie))
@@ -53,47 +54,50 @@ items = []
 
 def render():
 	screen.fill(black)
-	screen.blit(background, (backgroundx, backgroundy))
-	player.render(screen, d, a)
-	for enemy in enemies:
-		if enemy != "":
-			enemy.render(screen)
-	for item in items: #item update loop
-		item.render(screen)
-	playerGui.render(screen)
+	if(start):
+		screen.blit(background, (backgroundx, backgroundy))
+		player.render(screen, d, a)
+		for enemy in enemies:
+			if enemy != "":
+				enemy.render(screen)
+		for item in items: #item update loop
+			item.render(screen)
+		playerGui.render(screen)
+	screen.blit(menubackground, (0, 0))
 	menuGui.render(screen)
 	pygame.display.flip()
 
 def update():
-	global backgroundx
-	global backgroundy
-	global enemies
-	player.update()
-	backgroundx += bvelx
-	backgroundy += bvely
-	if backgroundx >= 0: #background x bound
-		backgroundx = 0
-	for x in range(0, len(enemies)): #enemy append item list
-		if enemies[x] != "":
-			enemies[x].update(player.getX(), player.getY(), d, a)
-			if enemies[x].getAlive() == False:
-				items.append(enemies[x].getDroppedItem())
-				enemies[x] = ""
-	for enemy in enemies:
-		#player sword collision with enemy
-		if enemy != "" and checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
-			enemy.setHealth(enemy.getHealth() - .3)
-		#enemy collision with player
-		if enemy != "" and checkCollision(player.getX(), player.getY(), 50, 100, enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
-			player.setHealth(player.getHealth() - .5)
-	for item in items: #collision with items (coins)
-		if(item != ""):
-			item.update(d, a)
-			if checkCollision(player.getX(), player.getY(), 50, 100, item.getX(), item.getY(), item.getW(), item.getH()):
-				if(item.getVisible()):
-					num = int(playerGui.getBoxText(2)) + 1
-					playerGui.setBoxText(2, str(num))
-				item.setVisible(False)
+	if(start):
+		global backgroundx
+		global backgroundy
+		global enemies
+		player.update()
+		backgroundx += bvelx
+		backgroundy += bvely
+		if backgroundx >= 0: #background x bound
+			backgroundx = 0
+		for x in range(0, len(enemies)): #enemy append item list
+			if enemies[x] != "":
+				enemies[x].update(player.getX(), player.getY(), d, a)
+				if enemies[x].getAlive() == False:
+					items.append(enemies[x].getDroppedItem())
+					enemies[x] = ""
+		for enemy in enemies:
+			#player sword collision with enemy
+			if enemy != "" and checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
+				enemy.setHealth(enemy.getHealth() - .3)
+			#enemy collision with player
+			if enemy != "" and checkCollision(player.getX(), player.getY(), 50, 100, enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
+				player.setHealth(player.getHealth() - .5)
+		for item in items: #collision with items (coins)
+			if(item != ""):
+				item.update(d, a)
+				if checkCollision(player.getX(), player.getY(), 50, 100, item.getX(), item.getY(), item.getW(), item.getH()):
+					if(item.getVisible()):
+						num = int(playerGui.getBoxText(2)) + 1
+						playerGui.setBoxText(2, str(num))
+					item.setVisible(False)
 
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
