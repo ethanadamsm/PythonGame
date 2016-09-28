@@ -23,9 +23,9 @@ playerGui = gui.Gui(430, 10, 200, 460)
 playerGui.setVisible(False)
 playerGui.addBox(440, 30, 180, 180)
 playerGui.addImage(0, pygame.image.load("playerpro.png"))
-playerGui.addBox(440, 220, 40, 40)
-playerGui.addBox(490, 220, 100, 40)
-playerGui.addBox(560, 245, 20, 20)
+playerGui.addBox(450, 220, 40, 40)
+playerGui.addBox(470, 220, 100, 40)
+playerGui.addBox(530, 232, 20, 20)
 playerGui.setBoxVisible(1, True)
 playerGui.setBoxVisible(2, True)
 playerGui.setBoxVisible(3, True)
@@ -74,7 +74,7 @@ def update():
 	global start
 	if menu:
 		print(menuGui.collideButton())
-		if menuGui.collideButton() == 0:
+		if pygame.mouse.get_pressed()[0] and menuGui.collideButton() == 0:
 			start = True
 			menu = False
 	if start:
