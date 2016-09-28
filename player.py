@@ -103,11 +103,12 @@ class Player(object):
 		self.bindItem()
 		self.bindHealth()
 		if(self.attackleft):
-			if(self.frame % 15 == 0.0):
-				self.current += 1 
-				if(self.current >= len(self.leftAttackAnimation)):
-					self.current = 0
-					self.attackleft = False
+			if self.inven.getType() == "Sword":
+				if(self.frame % 15 == 0.0):
+					self.current += 1 
+					if(self.current >= len(self.leftAttackAnimation)):
+						self.current = 0
+						self.attackleft = False
 		elif(self.left):
 			if(self.frame % 20 == 0.0):
 				self.current += 1
@@ -129,8 +130,9 @@ class Player(object):
 		self.inven.setItem(x, y)
 
 	def rotateItem(self, angle):
-		self.down = not self.down
-		self.inven.rotateItem(angle)
+		if self.inven.getType() == "Sword":
+			self.down = not self.down
+			self.inven.rotateItem(angle)
 
 	def getItemBox(self):
 		box = [self.inven.getX(), self.inven.getY(), self.inven.getW(), self.inven.getH()]
