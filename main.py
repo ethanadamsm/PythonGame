@@ -6,6 +6,7 @@ size = width, height, = 640, 480
 black = 0, 0, 0
 
 start = False
+menu = True
 
 screen = pygame.display.set_mode(size)
 
@@ -54,7 +55,7 @@ items = []
 
 def render():
 	screen.fill(black)
-	if(start):
+	if start:
 		screen.blit(background, (backgroundx, backgroundy))
 		player.render(screen, d, a)
 		for enemy in enemies:
@@ -63,12 +64,20 @@ def render():
 		for item in items: #item update loop
 			item.render(screen)
 		playerGui.render(screen)
-	screen.blit(menubackground, (0, 0))
-	menuGui.render(screen)
+	if menu:
+		screen.blit(menubackground, (0, 0))
+		menuGui.render(screen)
 	pygame.display.flip()
 
 def update():
-	if(start):
+	global menu
+	global start
+	if menu:
+		print(menuGui.collideButton())
+		if menuGui.collideButton() == 0:
+			start = True
+			menu = False
+	if start:
 		global backgroundx
 		global backgroundy
 		global enemies
