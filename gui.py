@@ -52,3 +52,11 @@ class Gui:
 
 	def getBoxText(self, index):
 		return self.boxes[index].getText()
+
+	def collideButton(self):
+		i = 0
+		for button in self.buttons:
+			if button.getCollision():
+				return i 
+			i += 1
+		return None
