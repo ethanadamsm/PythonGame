@@ -67,3 +67,6 @@ class Inventory(object):
 
 	def getInventory(self):
 		return self.itemList
+
+	def getType(self):
+		return self.itemList[self.current].getType()
