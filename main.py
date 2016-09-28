@@ -1,4 +1,4 @@
-import sys, pygame, player, enemy, sword, gui
+import sys, pygame, player, enemy, sword, gui, bow
 pygame.init()
 pygame.display.set_caption('Basic Pygame program')
 
@@ -56,6 +56,7 @@ menuGui.setButtonText(2, "Settings")
 player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
 player.addItem(sword.Sword(300, 230, 70, 20, "sword2.png"))
+player.addItem(bow.Bow(300, 230, 20, 50, "bow.png"))
 player.getItem(1).setVisible(False)
 
 backgroundx = 0
@@ -168,6 +169,8 @@ while 1:
 			#if(len(player.getInventory()) > 1):
 			if event.key == pygame.K_2:
 				player.setCurrent(1)
+			if event.key == pygame.K_3:
+				player.setCurrent(2)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
 				player.setVelY(0)
