@@ -35,10 +35,10 @@ class Button:
 	def setVisible(self, visible):
 		self.visible = visible
 
-	def getCollision(self):
-		return checkCollision
-
-	def checkCollision():
+	def checkCollision(self):
 		x = pygame.mouse.get_pos()[0]
 		y = pygame.mouse.get_pos()[1]
 		return (x > self.x and x < self.x + self.w and y > self.y and y < self.y + self.h)
+
+	def getCollision(self):
+		return self.checkCollision()
