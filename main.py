@@ -21,18 +21,22 @@ enemies.append(enemy.Enemy(110, 200, 50, 100, 0, 0, zombie))
 
 playerGui = gui.Gui(430, 10, 200, 460)
 playerGui.setVisible(False)
+
 playerGui.addBox(440, 30, 180, 180)
 playerGui.addImage(0, pygame.image.load("playerpro.png"))
+
 playerGui.addBox(450, 220, 40, 40)
-playerGui.addBox(470, 220, 100, 40)
-playerGui.addBox(530, 232, 20, 20)
 playerGui.setBoxVisible(1, True)
+playerGui.setBoxText(1, "Coins:")
+playerGui.setBoxFontSize(1, 20)
+
+playerGui.addBox(470, 220, 100, 40)
 playerGui.setBoxVisible(2, True)
-playerGui.setBoxVisible(3, True)
 playerGui.setBoxText(2, "0")
 playerGui.setBoxFontSize(2, 20)
-playerGui.setBoxFontSize(1, 20)
-playerGui.setBoxText(1, "Coins:")
+
+playerGui.addBox(530, 232, 20, 20)
+playerGui.setBoxVisible(3, True)
 playerGui.addImage(3, pygame.image.load("coin.png"))
 
 menuGui = gui.Gui(50, 50, 540, 380)
