@@ -1,4 +1,4 @@
-import sys, pygame, healthbar, random, item
+import sys, pygame, healthbar, random, item, inventory
 
 class Enemy(object):
 	def __init__(self, x, y, w, h, vx, vy, image):
@@ -10,6 +10,8 @@ class Enemy(object):
 			self.vy = vy
 			self.image = image
 			self.healthbar = healthbar.Healthbar(self.x - 10, self.y - 30, 100)
+			self.inventory = inventory.Inventory()
+			self.inventory.setVisible(False)
 			self.visible = True
 			self.alive = True
 			self.frame = 0
@@ -21,6 +23,7 @@ class Enemy(object):
 			screen.blit(self.image, (self.x, self.y))
 			self.healthbar.render(screen)
 		self.frame += 1
+		self.inventory.render(screen)
 
 	def setVelX(self, vx):
 		self.vx = vx
@@ -51,6 +54,9 @@ class Enemy(object):
 
 	def setY(self, y):
 		self.y = y
+
+	def addItem(self, item):
+		self.inventory.addItem(item)
 
 	def bindHealth(self):
 		self.healthbar.setX(self.x - 10)
