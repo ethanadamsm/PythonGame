@@ -7,27 +7,30 @@ class Inventory(object):
 		self.font = pygame.font.SysFont("comicsansms", 30)
 		self.current = 0
 		self.invensel = pygame.image.load("inventorysel.png")
+		self.visible = True
 
 	def addItem(self, item):
 		self.itemList.append(item)
 
 	def render(self, screen):
+		if len(self.itemList) > 0:
+			self.itemList[self.current].render(screen)
 		#self.itemList[self.current].render(screen)
-		screen.blit(self.itemList[self.current].getImages(), (self.itemList[self.current].getX(), self.itemList[self.current].getY()))
-		screen.blit(self.image, (10, 420))
-		x = 20
-		y = 430
-		num = 1
-		for item in self.itemList:
-			scalex = 50 / item.getW()
-			scaley = 50 / item.getH()
-			cur = pygame.transform.scale(item.getImage(), (scalex, scaley))
-			screen.blit(item.getImage(), (x, y))
-			text = self.font.render(str(num), True, (0, 0, 0))
-			screen.blit(text, (x, 380))
-			x += 50
-			num += 1
-		screen.blit(self.invensel, ((self.current * 50) + 10, 422))
+		if self.visible:
+			screen.blit(self.image, (10, 420))
+			x = 20
+			y = 430
+			num = 1
+			for item in self.itemList:
+				scalex = 50 / item.getW()
+				scaley = 50 / item.getH()
+				cur = pygame.transform.scale(item.getImage(), (scalex, scaley))
+				screen.blit(item.getImage(), (x, y))
+				text = self.font.render(str(num), True, (0, 0, 0))
+				screen.blit(text, (x, 380))
+				x += 50
+				num += 1
+			screen.blit(self.invensel, ((self.current * 50) + 10, 422))
 
 	def update(self):
 		for item in self.itemList:
@@ -70,3 +73,6 @@ class Inventory(object):
 
 	def getType(self):
 		return self.itemList[self.current].getType()
+
+	def setVisible(self, visible):
+		self.visible = visible
