@@ -1,4 +1,4 @@
-import sys, pygame, healthbar, item, inventory
+import sys, pygame, healthbar, item, inventory, bow, staff
 
 class Magician():
 	def __init__(self, x, y, w, h, image):
@@ -16,7 +16,9 @@ class Magician():
 		self.droppedItem = ""
 		self.typpe = "magician"
 		self.inventory = inventory.Inventory()
-		self.inventory.addItem(bow.Bow(300, 230, 20, 50, "bow.png"))
+		self.inventory.setVisible(False)
+		self.inventory.addItem(staff.Staff(300, 230, 20, 50, pygame.image.load("staff.png")))
+		#self.inventory.addItem(bow.Bow(300, 230, 20, 50, "bow.png"))
 
 	def render(self, screen):
 		if self.visible:
@@ -58,6 +60,9 @@ class Magician():
 		self.healthbar.setX(self.x - 10)
 		self.healthbar.setY(self.y - 30)
 
+	def bindItem(self):
+		self.inventory.setItem(self.x + 2, self.y + 19)
+
 	def update(self, px, py, d, a):
 		if d:
 			self.x -= 2
@@ -82,6 +87,7 @@ class Magician():
 		self.y += self.vy
 
 		self.bindHealth()
+		self.bindItem()
 		self.healthbar.update()
 
 	def getBox(self):
