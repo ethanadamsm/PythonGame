@@ -12,14 +12,15 @@ screen = pygame.display.set_mode(size)
 
 character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
-magician = pygame.image.load("magician.png")
+magicians = pygame.image.load("magician.png")
 background = pygame.image.load("background.png")
 menubackground = pygame.image.load("menubackground.png")
 enemies = []
 enemies.append(enemy.Enemy(400, 190, 50, 100, 0, 0, zombie))
 enemies.append(enemy.Enemy(700, 300, 50, 100, 0, 0, zombie))
 enemies.append(enemy.Enemy(110, 200, 50, 100, 0, 0, zombie))
-enemies.append(magician.Magician(1000, 400, 50, 100, magician))
+enemies.append(magician.Magician(1000, 400, 50, 100, magicians))
+enemies[1].addItem(bow.Bow(300, 230, 20, 50, "bow.png"))
 
 playerGui = gui.Gui(430, 10, 200, 460)
 playerGui.setVisible(False)
