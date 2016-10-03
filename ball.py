@@ -9,6 +9,7 @@ class Ball():
 		self.vx = 0
 		self.vy = 0
 		self.image = image
+		self.typee = "energyball"
 
 	def render(self, screen):
 		screen.blit(self.image, (self.x, self.y))
@@ -28,3 +29,18 @@ class Ball():
 
 	def setVelY(self, vy):
 		self.vy = vy
+
+	def getX(self):
+		return self.x
+
+	def getY(self):
+		return self.y
+
+	def getW(self):
+		return self.w
+
+	def getH(self):
+		return self.h
+
+	def getTypeE(self):
+		return self.typee
