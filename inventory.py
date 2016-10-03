@@ -41,8 +41,9 @@ class Inventory(object):
 		self.itemList[self.current].setVelY(vy)
 
 	def setItem(self, x, y):
-		self.itemList[self.current].setX(x)
-		self.itemList[self.current].setY(y)
+		if len(self.itemList) > 0:
+			self.itemList[self.current].setX(x)
+			self.itemList[self.current].setY(y)
 
 	def rotateItem(self, angle):
 		self.itemList[self.current].rotateItem(angle)
