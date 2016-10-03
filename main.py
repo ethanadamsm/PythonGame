@@ -1,4 +1,4 @@
-import sys, pygame, player, enemy, sword, gui, bow, magician
+import sys, pygame, player, enemy, sword, gui, bow, magician, math
 pygame.init()
 pygame.display.set_caption('Basic Pygame program')
 
@@ -9,6 +9,9 @@ start = False
 menu = True
 
 screen = pygame.display.set_mode(size)
+healthItems = []
+
+frame = 0
 
 character = pygame.image.load("character.png")
 zombie = pygame.image.load("enemy.png")
@@ -84,11 +87,14 @@ def render():
 	if menu:
 		screen.blit(menubackground, (0, 0))
 		menuGui.render(screen)
+	for item in healthItems:
+		item.render(screen)
 	pygame.display.flip()
 
 def update():
 	global menu
 	global start
+	global frame
 	if menu:
 		print(menuGui.collideButton())
 		if pygame.mouse.get_pressed()[0] and menuGui.collideButton() == 0:
@@ -124,6 +130,23 @@ def update():
 						num = int(playerGui.getBoxText(2)) + 1
 						playerGui.setBoxText(2, str(num))
 					item.setVisible(False)
+
+		for item in healthItems:
+			item.update()
+
+	if frame % 400 == 0:
+		for enemy in enemies:
+			if enemy != "" and enemy.getTypeE() == "magician":
+				ball = enemy.spawnBall()
+				cx = enemy.getX() - player.getX()
+				cy = enemy.getY() - player.getY()
+				div = math.sqrt((cx * cx) + (cy * cy))
+				vx = -((cx / div) * 3)
+				vy = -((cy / div) * 3)
+				ball.setVelX(vx)
+				ball.setVelY(vy)
+				healthItems.append(ball)
+	frame +=1 
 
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
