@@ -66,4 +66,7 @@ class Sword:
 	def getType(self):
 		return "Sword"
 
+	def attack(self):
+		print "sword attack"
+
 
