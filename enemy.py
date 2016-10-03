@@ -62,6 +62,9 @@ class Enemy(object):
 		self.healthbar.setX(self.x - 10)
 		self.healthbar.setY(self.y - 30)
 
+	def bindItem(self):
+		self.inventory.setItem(self.x + 2, self.y + 19)
+
 	def update(self, px, py, d, a): #to-do 5
 		if d:
 			self.x -= 2 
@@ -91,6 +94,7 @@ class Enemy(object):
 
 		self.bindHealth()
 		self.healthbar.update()
+		self.bindItem()
 		
 	def getBox(self):
 		return [self.x, self.y, self.w, self.h]
