@@ -1,4 +1,4 @@
-import sys, pygame, healthbar, item, inventory, bow, staff
+import sys, pygame, healthbar, item, inventory, bow, staff, ball
 
 class Magician():
 	def __init__(self, x, y, w, h, image):
@@ -113,3 +113,6 @@ class Magician():
 
 	def getTypeE(self):
 		return self.typpe
+
+	def spawnBall(self):
+		return ball.Ball(self.x + 25, self.y + 75, 20, 20, pygame.image.load("energyball.png"))
