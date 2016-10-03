@@ -133,7 +133,10 @@ def update():
 
 		for item in healthItems:
 			item.update()
-
+			if checkCollision(player.getX(), player.getY(), 50, 100, item.getX(), item.getY(), item.getW(), item.getH()):
+				if item.getTypeE() == "energyball":
+					player.setHealth(player.getHealth() - 1)
+					
 	if frame % 400 == 0:
 		for enemy in enemies:
 			if enemy != "" and enemy.getTypeE() == "magician":
