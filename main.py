@@ -63,7 +63,6 @@ player = player.Player(295, 190, 50, 100, 0, 0, character)
 player.addItem(sword.Sword(300, 230, 40, 10, "sword.png"))
 player.addItem(sword.Sword(300, 230, 70, 20, "sword2.png"))
 player.addItem(bow.Bow(300, 230, 20, 50, "bow.png"))
-player.getItem(1).setVisible(False)
 
 backgroundx = 0
 backgroundy = 0
@@ -71,6 +70,7 @@ bvelx = 0
 bvely = 0
 d = False
 a = False
+space = False
 items = []
 
 def render():
@@ -120,7 +120,7 @@ def update():
 			if enemy != "" and checkCollision(player.getItemX(), player.getItemY(), player.getItemW(), player.getItemH(), enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
 				enemy.setHealth(enemy.getHealth() - .3)
 			#enemy collision with player
-			if enemy != "" and checkCollision(player.getX(), player.getY(), 50, 100, enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()):
+			if enemy != "" and checkCollision(player.getX(), player.getY(), 50, 100, enemy.getX(), enemy.getY(), enemy.getW(), enemy.getH()) and enemy.getTypeE() == "zombie":
 				player.setHealth(player.getHealth() - .5)
 		for item in items: #collision with items (coins)
 			if(item != ""):
@@ -135,7 +135,8 @@ def update():
 			item.update()
 			if checkCollision(player.getX(), player.getY(), 50, 100, item.getX(), item.getY(), item.getW(), item.getH()):
 				if item.getTypeE() == "energyball":
-					player.setHealth(player.getHealth() - 1)
+					player.setHealth(player.getHealth() - 10)
+					healthItems.remove(item)
 					
 	if frame % 400 == 0:
 		for enemy in enemies:
@@ -191,14 +192,15 @@ while 1:
 			elif event.key == pygame.K_SPACE and event.key != pygame.K_1 and event.key != pygame.K_2:
 				player.rotateItem(270)
 				player.setAttackLeft(True)
-			elif event.key == pygame.K_1:
+				space = True
+			elif event.key == pygame.K_1 and space == False:
 				player.setCurrent(0)
 			elif event.key == pygame.K_i:
 				playerGui.setVisible(True)
 			#if(len(player.getInventory()) > 1):
-			if event.key == pygame.K_2:
+			if event.key == pygame.K_2 and space == False:
 				player.setCurrent(1)
-			if event.key == pygame.K_3:
+			if event.key == pygame.K_3 and space == False:
 				player.setCurrent(2)
 		if event.type == pygame.KEYUP: #keyup
 			if event.key == pygame.K_w or event.key == pygame.K_s:
@@ -216,6 +218,7 @@ while 1:
 			elif event.key == pygame.K_SPACE:
 				player.setAttackLeft(False)
 				player.rotateItem(90)
+				space = False
 			elif event.key == pygame.K_i:
 				playerGui.setVisible(False)
 	update()
