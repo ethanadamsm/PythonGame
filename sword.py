@@ -63,6 +63,9 @@ class Sword:
 	def setVisible(self, visible):
 		self.visible = visible
 
+	def getVisible(self):
+		return self.visible
+
 	def getType(self):
 		return "Sword"
 
