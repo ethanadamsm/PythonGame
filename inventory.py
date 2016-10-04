@@ -35,6 +35,7 @@ class Inventory(object):
 	def update(self):
 		for item in self.itemList:
 			item.update()
+			print(self.itemList[self.current].getVisible())
 
 	def moveItem(self, vx, vy):
 		self.itemList[self.current].setVelX(vx)
