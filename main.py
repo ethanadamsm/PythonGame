@@ -138,19 +138,19 @@ def update():
 					player.setHealth(player.getHealth() - 10)
 					healthItems.remove(item)
 					
-	if frame % 400 == 0:
-		for enemy in enemies:
-			if enemy != "" and enemy.getTypeE() == "magician":
-				ball = enemy.spawnBall()
-				cx = enemy.getX() - player.getX()
-				cy = enemy.getY() - player.getY()
-				div = math.sqrt((cx * cx) + (cy * cy))
-				vx = -((cx / div) * 3)
-				vy = -((cy / div) * 3)
-				ball.setVelX(vx)
-				ball.setVelY(vy)
-				healthItems.append(ball)
-	frame +=1 
+		if frame % 400 == 0:
+			for enemy in enemies:
+				if enemy != "" and enemy.getTypeE() == "magician":
+					ball = enemy.spawnBall()
+					cx = enemy.getX() - player.getX()
+					cy = enemy.getY() - player.getY()
+					div = math.sqrt((cx * cx) + (cy * cy))
+					vx = -((cx / div) * 3)
+					vy = -((cy / div) * 3)
+					ball.setVelX(vx)
+					ball.setVelY(vy)
+					healthItems.append(ball)
+		frame +=1 
 
 
 def checkCollision(x, y, w, h, x2, y2, w2, h2):
